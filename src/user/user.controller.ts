@@ -7,6 +7,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 @Controller('user')
 export class UserController {
     constructor(private userService : UserService){}
+    
     //To get all consultants by specialty
     @Get('consultants')
     async getAllConsultants(@Query('specialty')   specialty? : string){

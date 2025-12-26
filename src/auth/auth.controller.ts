@@ -8,11 +8,13 @@ import { max } from 'class-validator';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
+  //User Registration
   @Post('register')
   async register(@Body() data: RegisterDto) {
     return this.authService.register(data);
   }
 
+  //User Login
   @Post('login')
   async login(@Body() data: LoginDto, @Res({ passthrough: true }) res: any) {
     const { access_token } = await this.authService.login(data);
@@ -27,4 +29,15 @@ export class AuthController {
       message: 'Login successful',
     };
   }
+
+  //logout 
+  @Post('logout')
+  async logout(@Res({passthrough:true}) res : any){
+    res.clearCookie('jwt');
+    return {
+        message: 'Logout successful'
+    }
+  }
+
+  
 }

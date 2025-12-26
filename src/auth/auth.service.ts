@@ -69,7 +69,7 @@ export class AuthService {
         }
 
         const token =  await this.jwt.sign(payload);
-
+ 
         return{
             message: 'Login successful',
             access_token : token
